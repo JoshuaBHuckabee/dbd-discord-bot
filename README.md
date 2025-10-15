@@ -1,10 +1,10 @@
 # DBD Discord Bot
 
-[![Discord](https://img.shields.io/discord/your-server-id.svg?label=Discord&logo=discord&color=7289da)](https://discord.gg/your-invite-link)  
+[![Discord](https://img.shields.io/discord/1296581187112013904.svg?label=Discord&logo=discord&color=7289da)](https://discord.gg/3JrzDaB2)  
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)  
-[![License](https://img.shields.io/github/license/yourusername/dbd-discord-bot.svg)](LICENSE)  
+[![License](https://img.shields.io/github/license/JoshuaBHuckabee/dbd-discord-bot.svg)](LICENSE)  
 
-A custom-built Discord bot for managing **Dead by Daylight** content, including event tracking, glyphs, news updates, and more.
+A custom-built Discord bot for managing **Dead by Daylight** content, including event tracking, glyph guide, news and patch updates, and more.
 
 ---
 
@@ -158,7 +158,7 @@ dbd_bot/
 - `/ping` — Test if the bot is online.
 - `/players` — Show current active players on Steam.
 - `/lore` — Get a random lore fragment about The Entity.
-- `/shrine` — Display current Shrine of Secrets perks.
+- `!glyph` — Display a table of glyph objectives. (/command coming soon!)
 - `/events` — List upcoming DBD community events.
 
 ---
