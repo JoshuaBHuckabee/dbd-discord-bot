@@ -158,7 +158,7 @@ dbd_bot/
 - `/ping` — Test if the bot is online.
 - `/players` — Show current active players on Steam.
 - `/lore` — Get a random lore fragment about The Entity.
-- `!glyph` — Display a table of glyph objectives. (/command coming soon!)
+- `/glyph` — Display a table of glyph objectives. (/command coming soon!)
 - `/events` — List upcoming DBD community events.
 
 ---

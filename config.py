@@ -32,3 +32,16 @@ PATCH_KEYWORDS = [
     "balance", 
     "fixes"
 ]
+
+# Acceptable glyph colors
+GLYPH_COLORS = {
+    "red", 
+    "blue", 
+    "green", 
+    "yellow", 
+    "purple", 
+    "black", 
+    "white", 
+    "orange", 
+    "pink"
+    }
