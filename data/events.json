@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Haunted by Daylight",
+        "start": "2025-10-17T11:00:00Z",
+        "end": "2025-11-07T11:00:00Z",
+        "description": "🦇 The Fog thickens, and with it comes an eerie chill. Haunted by Daylight returns with spine-tingling challenges, event-exclusive Void gameplay, and a host of seasonal cosmetics. Brave cursed tomes, gather sinister energy, and traverse into the Void Realm to claim your rewards. Trick, treat, and terror await. 🦇"
+    },
+    {
+        "name": "Bloodhunt Weekend",
+        "start": "2025-09-20T00:00:00Z",
+        "end": "2025-09-23T00:00:00Z",
+        "description": "💉 Blood flows freely in the Fog as The Entity stirs. For a limited time, earn double Bloodpoints in all categories across every Trial. Whether you're grinding your main or leveling up new killers and survivors, there's no better time to fill your Bloodweb. Stack offerings, perks, and events for massive gains. 💉"
+    },
+    {
+        "name": "DBD Day Community Event (Tentative)",
+        "start": "2025-10-14T00:00:00Z",
+        "end": "2025-10-31T00:00:00Z",
+        "description": "🎉 A leaked community event to celebrate DBD Day, featuring universal quests like 'Play as any Killer or Survivor' with unlockable rewards. Not yet officially confirmed but supported by datamines. 🎉"
+    },
+    {
+        "name": "2v8 Mode Return (Limited Window)",
+        "start": "2025-11-15T00:00:00Z",
+        "end": "2025-12-01T00:00:00Z",
+        "description": "🆚 The experimental 2v8 mode returns! Gather your allies — or enemies — and prepare for chaos. Behaviour’s roadmap suggests a limited-time reappearance in November. Subject to change. 🆚"
+    },
+    {
+        "name": "Bone Chill Winter Event 2025 (Expected)",
+        "start": "2025-12-18T00:00:00Z",
+        "end": "2026-01-08T00:00:00Z",
+        "description": "❄️ Chill winds blow through the Fog again in this returning winter celebration. Expect festive hooks, gifts from snowmen, and seasonal tomes. Based on historical event timing — official details TBA. ❄️"
+    },
+    {
+        "name": "10th Anniversary Event (Planned)",
+        "start": "2026-05-24T00:00:00Z",
+        "end": "2026-06-14T00:00:00Z",
+        "description": "🎂 Behaviour has confirmed a major celebration for Dead by Daylight's 10th anniversary in 2026. While Twisted Masquerade ends in 2025, this anniversary event will feature new formats and surprises. 🎂"
+    }
+]
