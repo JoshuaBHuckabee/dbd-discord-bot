@@ -3,6 +3,10 @@ from discord.ext import commands
 import asyncio
 from config import COGS
 import os
+from rich.console import Console
+
+# construct the Rich console object
+console = Console()
 
 
 # Setup Discord intents (controls what events your bot can listen to)
@@ -16,21 +20,24 @@ def create_bot() -> commands.Bot:
     # Event triggered when the bot is ready and connected to Discord
     @bot.event
     async def on_ready():
-        print(f"✅ Logged in as {bot.user} ({bot.user.id})")
+        console.print(f"[green][OK][/green] Logged in as {bot.user} ({bot.user.id})")
         try:
             synced = await bot.tree.sync()
-            print(f"Synced {len(synced)} slash command(s)")
+            console.print(f"- Synced {len(synced)} slash command(s)")
         except Exception as e:
-            print(f"Error syncing commands: {e}")
+            console.print(f"[red]Error syncing commands: {e}")
 
     # Asynchronously load all bot extensions (cogs)
     async def load_cogs():
-        for cog in COGS:
-            try:
-                await bot.load_extension(cog)
-                print(f"✅ Loaded {cog}")
-            except Exception as e:
-                print(f"❌ Failed to load {cog}: {e}")
+
+        with console.status(" Loading cogs...", spinner="dots") as status:
+            for cog in COGS:
+                try:
+                    await bot.load_extension(cog)
+                    console.print(f"[green][OK][/green] Loaded {cog}")
+                except Exception as e:
+                    console.print(f"[red] Failed to load {cog}: {e}")
+                await asyncio.sleep(0.5)  # Small delay so spinner is visible
 
     bot.load_cogs = load_cogs  # Attach for external access
 
