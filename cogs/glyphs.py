@@ -1,14 +1,32 @@
-# cogs/glyphs.py
 import discord
 from discord.ext import commands
+from discord import app_commands
+from config import GLYPH_COLORS
 
 # Define a Cog class to contain the glyph commands of the bot
 class Glyphs(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
-    async def glyph(self, ctx, color: str = None):
+    # Define a slash command: /glyph
+    # Displays a table of all the glyphs, roles, and objectives to complete.
+    @app_commands.command(name="glyph", description="Glyph Guide Table")
+    @app_commands.describe(color="Optional color of the glyph you want info about")
+    async def glyph(self, interaction: discord.Interaction, color: str = None):
+        
+        if color:
+            color_lower = color.lower()
+            if color_lower not in self.GLYPH_COLORS:
+                return await interaction.response.send_message(
+                    f"'{color}' is not a valid glyph color. Choose from: {', '.join(sorted(self.GLYPH_COLORS))}.",
+                    ephemeral=True
+                )
+            # Placeholder: detailed info soon
+            return await interaction.response.send_message(
+                f"More knowledge about **{color_lower.capitalize()}** glyphs is coming soon."
+            )
+            
+        # If no color, send the full table + hint in one message
         glyph_table = (
             "```text\n"
             "+--------+--------+----------+--------------------------------------------------+\n"
@@ -27,11 +45,9 @@ class Glyphs(commands.Cog):
             "```"
         )
         followup = "🔮 Use `!glyph [color]` to summon more knowledge from The Entity *(coming soon).*"
-        if color:
-            await ctx.send(f"More knowledge about **{color.capitalize()}** glyphs is coming soon.")
-        else:
-            await ctx.send(glyph_table)
-            await ctx.send(followup)
+        
+        # Use a single combined message
+        await interaction.response.send_message(f"{glyph_table}\n{followup}")
 
 async def setup(bot):
     await bot.add_cog(Glyphs(bot))
