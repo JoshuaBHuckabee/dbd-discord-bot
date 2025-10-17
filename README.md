@@ -1,8 +1,8 @@
 # DBD Discord Bot
 
 [![Discord](https://img.shields.io/discord/1296581187112013904.svg?label=Discord&logo=discord&color=7289da)](https://discord.gg/3JrzDaB2)  
-[![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)  
-[![License](https://img.shields.io/github/license/JoshuaBHuckabee/dbd-discord-bot.svg)](LICENSE)  
+[![Python](https://img.shields.io/badge/python-3.10+-blue.svg?label=Python&logo=python)](https://www.python.org/)  
+[![License](https://img.shields.io/github/license/JoshuaBHuckabee/dbd-discord-bot.svg?label=License)](LICENSE)  
 
 A custom-built Discord bot for managing **Dead by Daylight** content, including event tracking, glyph guide, news and patch updates, and more.
 
@@ -112,7 +112,7 @@ Create a .env file at the project root:
 
 ```bash
 DISCORD_TOKEN=your-bot-token-here
-OFFERS_CHANNEL_ID=1234567890
+NEWS_CHANNEL_ID=1234567890
 PATCH_NOTES_CHANNEL_ID=9876543210
 # Add any other config variables you need
 ```
