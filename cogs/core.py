@@ -40,7 +40,12 @@ class Core(commands.Cog):
             "Glyphs appear to those marked, guiding or deceiving their fate.",
             "Each trial is a story, written in pain and shadow.",
             "The Entity’s realm bends reality, warping hope and despair alike.",
-            "Some say the Entity’s hunger can never be sated."
+            "Some say the Entity’s hunger can never be sated.",
+            "According to Arcus 1513, there is a world in which a ""Cult of The Entity"" exists called The Black Vale, possibly Vigo's world.",
+            "The Entity is described by The Observer as a ""Cosmic Blood Pudding"" (Arcus 328) or as a ""Serpent of Chaos"" (Arcus 07).",
+            "It is assumed that The Entity prefers to physically manifest itself in the form of a spider, similar to Stephen King's ""IT"".",
+            "Towards the beginning of The Entity's parasitic relationship with the real world, there may have been some trial and error, namely with the existence of trials and their emphasis on Generators and other in-game objects.",
+            "The degree of torture needed to convince initially unwilling Killers to do The Entity's bidding can generally be gauged from any physical alterations, such as The Trapper's numerous iron hooks piercing through his upper torso. Though in Rin’s case, the alterations were received from her father.",
         ]
 
         # Create the embed message with a random lore fragment
