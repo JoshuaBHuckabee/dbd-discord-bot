@@ -60,7 +60,7 @@ class Startup(commands.Cog):
 
             # Set the menu for the embed
             embed.add_field(name="`/ping`", value="Ping the Entity", inline=False)
-            embed.add_field(name="`!glyph`", value="Reveal glyph types, colors, and roles (slash command coming soon!)", inline=False)
+            embed.add_field(name="`/glyph`", value="Reveal glyph types, colors, and roles (slash command coming soon!)", inline=False)
             embed.add_field(name="`/lore`", value="Receive fragments of forgotten knowledge", inline=False)
             embed.add_field(name="`/events`", value="Shows current and upcoming Dead by Daylight in-game events, including dates, rewards, and special features.", inline=False)
             embed.add_field(name="`/players`", value="Reveal how many are currently trapped in the Fog...", inline=False)
