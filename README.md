@@ -12,6 +12,7 @@ A custom-built Discord bot for managing **Dead by Daylight** content, including 
 
 - [DBD Discord Bot](#dbd-discord-bot)
   - [Table of Contents](#table-of-contents)
+  - [Project Update!](#project-update)
   - [Bot Features \& Architecture](#bot-features--architecture)
     - [Core Features](#core-features)
       - [Event Management](#event-management)
@@ -33,6 +34,44 @@ A custom-built Discord bot for managing **Dead by Daylight** content, including 
     - [Slash Commands](#slash-commands)
   - [Extending the Bot](#extending-the-bot)
   - [Contributing \& License](#contributing--license)
+
+---
+# Project Update
+
+The current bot handles **event management** and **Steam news integration**, giving communities quick access to upcoming *Dead by Daylight* events and official updates.  
+However, as the ecosystem grows, we’re moving toward something bigger and more modular — an open-source **aggregator API** that centralizes all *DBD* news and updates across platforms.
+
+→ https://github.com/JoshuaBHuckabee/dbd-news-api
+
+---
+
+## New Direction: Aggregator API
+
+This new API will eventually take over the bot’s event and news features, providing a single source of truth for *Dead by Daylight* content.
+
+### Core Features
+- **Multi-Platform Scraping** — Collects news and updates from official sources including:
+  - YouTube  
+  - Steam  
+  - The Dead by Daylight official website
+- **Structured Storage** — Saves all fetched data into a **Neon PostgreSQL** database using **Prisma ORM**.
+- **Clean & Queryable API** — Provides endpoints to fetch, filter, and paginate news items for any client or bot.
+- **Manual Control** — Scrapers can be run on demand — no automatic background fetching.
+- **Duplicate Protection** — Ensures unique entries using URL-based deduplication.
+- **Extensible Design** — Easily add new platforms (e.g. Reddit, Instagram, Twitter/X) with minimal setup.
+
+---
+
+## Tech Stack
+- **Node.js + Express** — Backend & API framework  
+- **Prisma ORM + Neon PostgreSQL** — Database and schema management  
+- **Axios, Cheerio, fast-xml-parser** — Web scraping utilities  
+- **dotenv** — Environment configuration
+
+---
+
+## Integration Path
+Once stable, the Aggregator API will serve as the **backend foundation** for the existing Discord bot — powering event listings, patch notes, and official updates directly from the unified data source.
 
 ---
 
