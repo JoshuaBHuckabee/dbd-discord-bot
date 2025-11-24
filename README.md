@@ -12,9 +12,13 @@ A custom-built Discord bot for managing **Dead by Daylight** content, including 
 
 - [DBD Discord Bot](#dbd-discord-bot)
   - [Table of Contents](#table-of-contents)
-  - [Project Update!](#project-update)
-  - [Bot Features \& Architecture](#bot-features--architecture)
+- [Project Update](#project-update)
+  - [New Direction: Aggregator API](#new-direction-aggregator-api)
     - [Core Features](#core-features)
+  - [Tech Stack](#tech-stack)
+  - [Integration Path](#integration-path)
+  - [Bot Features \& Architecture](#bot-features--architecture)
+    - [Core Features](#core-features-1)
       - [Event Management](#event-management)
       - [Steam News Integration](#steam-news-integration)
     - [Architecture \& Design](#architecture--design)
@@ -38,8 +42,11 @@ A custom-built Discord bot for managing **Dead by Daylight** content, including 
 ---
 # Project Update
 
-The current bot handles **event management** and **Steam news integration**, giving communities quick access to upcoming *Dead by Daylight* events and official updates.  
-However, as the ecosystem grows, we’re moving toward something bigger and more modular — an open-source **aggregator API** that centralizes all *DBD* news and updates across platforms.
+The bot now features **API-driven event display**, fetching upcoming Dead by Daylight events from the dbd-news-api. This ensures communities always see the latest events without relying on a local events.json file.
+
+**News and patch notes continue to be fetched and posted using the existing Steam/news integration**, ensuring communities still receive official updates in real time.
+
+The project is gradually moving toward a modular **aggregator API**, centralizing all DBD news and updates across platforms:
 
 → https://github.com/JoshuaBHuckabee/dbd-news-api
 
@@ -79,9 +86,17 @@ Once stable, the Aggregator API will serve as the **backend foundation** for the
 
 ### Core Features
 
-#### Event Management  
-- Loads and displays upcoming Dead by Daylight events from a self‑curated `events.json`.  
-- Ideal for community calendars or in-server event alerts.
+#### Event Management
+- Fetches events from `dbd-news-api` for a centralized and always-current source.
+- Each event is shown using **rich embeds**, including fields like title, description, platform, and link.
+- Includes error handling for missing or malformed data from the API.
+- The bot does not perform **sorting, filtering, or date calculations** — all event logic is handled by the scripts that populate the API.
+- **Manual reminders**: users or admins can trigger notifications for events in Discord channels.
+- Does not rely on local JSON files or event dates; sorting/filtering is based on available metadata.
+
+Removes dependency on local events.json, streamlining event updates and ensuring accuracy.  
+- ~~Loads and displays upcoming Dead by Daylight events from a self‑curated `events.json`.~~
+- ~~Ideal for community calendars or in-server event alerts.~~
 
 #### Steam News Integration  
 - Fetches official DBD news from Steam.  
