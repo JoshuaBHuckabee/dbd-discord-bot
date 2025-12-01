@@ -121,28 +121,24 @@ class Events(commands.Cog):
         # Spacer for visual clarity
         embed.add_field(name="\u200b", value="\u200b", inline=False)
 
+        # Set a general icon (optional)
+        embed.set_thumbnail(url="https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/4/4b/IconCurrency_bloodpoints.png/revision/latest?cb=20180702212847")  # Bloodpoints logo
+
         # Add each event to the embed
         for ev in events[:5]: # Show up to 5 events
             # Extract fields from the API response
             title = ev.get("title", "Untitled Event")
             content = ev.get("content", "No description provided.")
             url = ev.get("url")
-            image_url = ev.get("imageUrl")
 
             # Build the field text
             value_text = content
             if url:
-                value_text += f"\n[More Info]({url})" # Markdown clickable link
+                value_text += f"\n[🔗 More Info]({url})" # Markdown clickable link
             
-            
-
             # Add the event as a field
-            embed.add_field(name=f"🩸 {title}", value=value_text, inline=False)
+            embed.add_field(name=f"🩸 {title}\n", value=value_text, inline=False)
             embed.add_field(name="\u200b", value="\u200b", inline=False) # spacer
-            
-            # opt. Set a thumbnail for the embed
-            if image_url:
-                embed.set_thumbnail(url=image_url)
 
         # Set embed footer
         embed.set_footer(text="The trials await...")
@@ -166,42 +162,35 @@ class Events(commands.Cog):
 
         # Create embed
         embed = discord.Embed(
-            title="🩸 Active Redeemable Codes",
+            title="💀 Active Redeemable Codes",
             description="These offerings have been revealed by The Entity:",
             color=discord.Color.dark_red(),
             timestamp=datetime.now(timezone.utc)
         )
 
         # Set a general icon (optional)
-        embed.set_thumbnail(url="https://i.imgur.com/LPJtI9Q.png")  # Example DBD icon (replace if needed)
+        embed.set_thumbnail(url="https://toppng.com/uploads/preview/dead-by-daylight-white-logo-type-design-11733954264hlxoyqh0ou.webp")  # Example DBD icon (replace if needed)
 
         # Loop through codes and add entries
         for ev in codes[:5]:  # show up to 5 entries
-            title = ev.get("title", "Untitled Code")
             content = ev.get("content", "No description available.")
             code = ev.get("code", "Unknown")
             url = ev.get("url")
-            image_url = ev.get("imageUrl")
 
             # Build field value
-            value_lines = [
-                f"**🎟️ Code:** `{code}`",
-                content
-            ]
-
-            if url:
-                value_lines.append(f"[🔗 Source]({url})")
-
-            value = "\n".join(value_lines)
-
-            embed.add_field(
-                name=f"🩸 {title}",
-                value=value,
-                inline=False
+            value_text = (
+                f"**🎟️ Code: `{code}` 🎟️**\n"
+                f"{content}*\n"
             )
 
-        embed.set_footer(text="Enter these codes in the in-game Store.")
+            if url:
+                value_text += f"[🔗 Source]({url})"
 
+            # Add the text as a field
+            embed.add_field(name="\u200b", value=value_text, inline=False)
+            embed.add_field(name="\u200b", value="\u200b", inline=False) # spacer
+
+        embed.set_footer(text="Enter these codes in the in-game Store.")
         await interaction.followup.send(embed=embed)
 
 
