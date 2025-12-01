@@ -49,13 +49,50 @@ class Events(commands.Cog):
         except aiohttp.ClientError as e:
             print(f"API connection error: {e}")
             return []          
+        
+    # Load codes from API source
+    async def get_codes(self):
+        """
+        Fetch codes from the API asynchronously using aiohttp.
+        Only keeps items where contentType === "code".
+        Handles timeouts and connection errors gracefully
+        """
+
+        try: 
+            # Create am async HTTP session
+            async with aiohttp.ClientSession() as session:
+
+                # Make GET request with 10-second timeout
+                async with session.get(API_URL, timeout=10) as response:
+
+                    # Raises exception if status is not 200
+                    response.raise_for_status()
+
+                    # Convert the JSON response into a Python list/dict
+                    data = await response.json()
+        
+                    # Filter: keep only the items where contentType == "event"
+                    codes = [item for item in data if item.get("contentType") == "code" and item.get("code")]
+
+                    # Return only those filtered event items
+                    return codes
+
+        # Triggered if API doesn't respond in time
+        except asyncio.TimeoutError:
+            print("API request timed out")
+            return []
+
+        # Triggered if DNS fails, no internet, or API is down
+        except aiohttp.ClientError as e:
+            print(f"API connection error: {e}")
+            return []          
 
     # Define a slash command: /events
     # Displays the list of upcoming events in an embed
     @app_commands.command(name="events", description="Upcoming events!")
     async def events(self, interaction: discord.Interaction):
         """
-        Displays a list of upcoming events using your API.
+        Displays a list of upcoming events using the dbd API.
         Fully async-friendly.
         """
 
@@ -97,6 +134,8 @@ class Events(commands.Cog):
             if url:
                 value_text += f"\n[More Info]({url})" # Markdown clickable link
             
+            
+
             # Add the event as a field
             embed.add_field(name=f"🩸 {title}", value=value_text, inline=False)
             embed.add_field(name="\u200b", value="\u200b", inline=False) # spacer
@@ -108,6 +147,64 @@ class Events(commands.Cog):
         # Set embed footer
         embed.set_footer(text="The trials await...")
         await interaction.followup.send(embed=embed)
+
+    # Define a slash command: /codes
+    # Displays active redeemable codes
+    @app_commands.command(name="codes", description="Redeemable Dead by Daylight Codes!")
+    async def codes(self, interaction: discord.Interaction):
+
+        await interaction.response.defer()
+
+        # Fetch list of codes
+        codes = await self.get_codes()
+
+        if not codes:
+            return await interaction.followup.send("☁️ The Fog reveals no redeemable codes at this time...")
+
+        # Sort codes by published date (newest first)
+        codes.sort(key=lambda e: e.get("publishedAt"), reverse=True)
+
+        # Create embed
+        embed = discord.Embed(
+            title="🩸 Active Redeemable Codes",
+            description="These offerings have been revealed by The Entity:",
+            color=discord.Color.dark_red(),
+            timestamp=datetime.now(timezone.utc)
+        )
+
+        # Set a general icon (optional)
+        embed.set_thumbnail(url="https://i.imgur.com/LPJtI9Q.png")  # Example DBD icon (replace if needed)
+
+        # Loop through codes and add entries
+        for ev in codes[:5]:  # show up to 5 entries
+            title = ev.get("title", "Untitled Code")
+            content = ev.get("content", "No description available.")
+            code = ev.get("code", "Unknown")
+            url = ev.get("url")
+            image_url = ev.get("imageUrl")
+
+            # Build field value
+            value_lines = [
+                f"**🎟️ Code:** `{code}`",
+                content
+            ]
+
+            if url:
+                value_lines.append(f"[🔗 Source]({url})")
+
+            value = "\n".join(value_lines)
+
+            embed.add_field(
+                name=f"🩸 {title}",
+                value=value,
+                inline=False
+            )
+
+        embed.set_footer(text="Enter these codes in the in-game Store.")
+
+        await interaction.followup.send(embed=embed)
+
+
 
 # Register this cog with the bot
 async def setup(bot):
