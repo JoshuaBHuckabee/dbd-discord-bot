@@ -64,6 +64,7 @@ class Startup(commands.Cog):
             embed.add_field(name="`/lore`", value="Receive fragments of forgotten knowledge", inline=False)
             embed.add_field(name="`/events`", value="Shows current and upcoming Dead by Daylight in-game events, including dates, rewards, and special features.", inline=False)
             embed.add_field(name="`/players`", value="Reveal how many are currently trapped in the Fog...", inline=False)
+            embed.add_field(name="`/codes`", value="Reveal active game codes", inline=False)
             embed.add_field(name="`!killer`", value="Coming Soon!", inline=False)
 
             # Add empty field for spacing (2 line breaks visually)
