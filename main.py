@@ -10,8 +10,16 @@
 # ------------------------------------------------------------
 
 import asyncio
+import logging
 from config import DISCORD_TOKEN
 from bot import create_bot
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+)
+logger = logging.getLogger(__name__)
 
 # ------------------------------------------------------------
 # Main Async Function
@@ -24,6 +32,7 @@ async def main():
     bot = create_bot()
     async with bot:
         await bot.load_cogs()
+        logger.info("Starting bot...")
         await bot.start(DISCORD_TOKEN)
 
 # ------------------------------------------------------------
@@ -36,4 +45,4 @@ if __name__ == "__main__":
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
-        print("\n👋 Bot shutdown gracefully.")
+        logger.info("Bot shutdown requested.\nShutting down...")
